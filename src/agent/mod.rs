@@ -3,3 +3,4 @@ pub mod bug;
 pub mod performance;
 pub mod r#trait;
 pub mod prompts;
+pub mod meta_agent;

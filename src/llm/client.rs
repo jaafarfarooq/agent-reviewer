@@ -45,8 +45,8 @@ impl LlmClient {
         let status = response.status();
         let raw_text = response.text().await?;
 
-        println!("LLM HTTP status: {}", status);
-        println!("LLM raw response:\n{}", raw_text);
+        //println!("LLM HTTP status: {}", status);
+        //println!("LLM raw response:\n{}", raw_text);
 
         let json: serde_json::Value = serde_json::from_str(&raw_text)?;
 
