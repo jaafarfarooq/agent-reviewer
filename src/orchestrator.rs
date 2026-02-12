@@ -1,3 +1,9 @@
+/// Orchestrator: run agents concurrently and collect their results.
+///
+/// Responsibilities:
+/// - Accept a list of agents implementing `ReviewAgent`
+/// - Execute each agent's `review` method concurrently
+/// - Collect and return the vector of `AgentResult`s
 use crate::agent::r#trait::ReviewAgent;
 use crate::models::{AgentInput, AgentResult};
 use anyhow::Result;

@@ -15,15 +15,55 @@ use orchestrator::Orchestrator;
 use models::AgentInput;
 use llm::client::LlmClient;
 
+use clap::Parser;
+
+#[derive(Parser, Debug)]
+#[command(author, version, about = "AI Code Review Agent")]
+struct Args {
+    /// Use current git diff
+    #[arg(long)]
+    git: bool,
+
+    /// Provide diff file manually
+    #[arg(long)]
+    file: Option<String>,
+}
+
+/// Entry point for the Agent Reviewer CLI.
+/// 
+/// Responsibilities:
+/// - Parse CLI arguments
+/// - Load git diff or file input
+/// - Initialize agent input
+/// - Execute agents
+/// - Aggregate results
+/// - Print final review report
 #[tokio::main]
 async fn main() -> Result<(), anyhow::Error> {
     println!("Agent Reviewer Initialized");
 
-    let input = AgentInput {
-        diff: "diff --git a/main.rs b/main.rs".to_string(),
-        pr_title: "Add feature X".to_string(),
-        pr_description: "Initial implementation".to_string(),
+    let args = Args::parse();
+
+    let diff = if args.git {
+        std::process::Command::new("git")
+            .args(["diff"])
+            .output()
+            .expect("Failed to execute git diff")
+            .stdout
+    } else if let Some(file_path) = args.file {
+        std::fs::read(file_path).expect("Failed to read diff file")
+    } else {
+        panic!("Provide either --git or --file <path>");
     };
+
+    let diff_string = String::from_utf8_lossy(&diff).to_string();
+
+    let input = AgentInput {
+        diff: diff_string,
+        pr_title: "CLI Review".to_string(),
+        pr_description: "Generated from CLI input".to_string(),
+    };
+
 
     let llm = LlmClient::new(
         std::env::var("OPENAI_API_KEY").expect("OPENAI_API_KEY not set")

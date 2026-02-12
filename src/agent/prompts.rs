@@ -1,3 +1,8 @@
+/// Prompt templates for agents.
+///
+/// Responsibilities:
+/// - Provide well-formed prompt strings for each agent type
+/// - Constrain and document the exact JSON schema agents must return
 pub fn bug_prompt(diff: &str) -> String {
     format!(
 r#"
@@ -20,6 +25,8 @@ The JSON must match this schema exactly:
     }}
   ]
 }}
+
+If you find any issue, return at least one finding. Do not return an empty list unless no issues exist.
 
 If no bugs are found, return:
 
@@ -54,6 +61,8 @@ The JSON must match this schema exactly:
   ]
 }}
 
+If you find any issue, return at least one finding. Do not return an empty list unless no issues exist.
+
 If no style issues are found, return:
 
 {{ "findings": [] }}  
@@ -85,6 +94,8 @@ The JSON must match this schema exactly:
     }}
   ]
 }}
+
+If you find any issue, return at least one finding. Do not return an empty list unless no issues exist.
 
 If no performance issues are found, return:
 

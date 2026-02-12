@@ -1,3 +1,9 @@
+/// PerformanceAgent: a review agent focused on performance issues.
+///
+/// Responsibilities:
+/// - Create a performance-focused prompt from the diff
+/// - Query the LLM for structured JSON findings
+/// - Parse and return an `AgentResult` containing `AgentFinding`s
 use crate::{
     agent::r#trait::ReviewAgent,
     llm::client::LlmClient,

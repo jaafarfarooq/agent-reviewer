@@ -1,3 +1,9 @@
+/// Lightweight LLM client wrapper.
+///
+/// Responsibilities:
+/// - Wrap HTTP calls to the LLM provider
+/// - Authenticate with an API key
+/// - Send prompts and return assistant content as cleaned strings
 use anyhow::{Result, anyhow};
 use reqwest::Client;
 use serde_json::json;

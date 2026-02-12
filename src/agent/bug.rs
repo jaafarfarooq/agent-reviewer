@@ -1,3 +1,9 @@
+/// BugAgent: a review agent focused on finding bugs.
+///
+/// Responsibilities:
+/// - Construct a bug-finding prompt from the provided diff
+/// - Invoke the LLM and parse JSON findings into `AgentFinding`s
+/// - Return an `AgentResult` summarizing discovered bugs
 use crate::{
     agent::r#trait::ReviewAgent,
     llm::client::LlmClient,

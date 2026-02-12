@@ -1,3 +1,10 @@
+/// Shared data models used across the agent-reviewer crate.
+///
+/// Responsibilities:
+/// - Define shape of inputs (`AgentInput`) passed to agents
+/// - Define the agent result types (`AgentFinding`, `AgentResult`)
+/// - Provide serde derives so models can be serialized/deserialized
+
 use serde::{Serialize, Deserialize};
 
 #[derive(Debug, Serialize, Deserialize, Clone)]

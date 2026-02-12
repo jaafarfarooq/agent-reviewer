@@ -1,3 +1,9 @@
+/// StyleAgent: a review agent focused on style issues.
+///
+/// Responsibilities:
+/// - Build a style-focused prompt from a diff
+/// - Call the LLM client to get JSON-formatted findings
+/// - Parse findings into `AgentFinding` and return an `AgentResult`
 use crate::{
     agent::r#trait::ReviewAgent,
     llm::client::LlmClient,
