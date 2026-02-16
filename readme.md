@@ -26,15 +26,19 @@ This creates a structured and production-ready AI review pipeline.
 ## 🧠 Architecture
 
 CLI Input (git diff or file)
+
         ↓
 Agent Orchestrator
+
         ↓
 Parallel LLM-backed Agents:
   - StyleAgent
   - BugAgent
   - PerformanceAgent
+
         ↓
 Deduplication + Severity Prioritization
+
         ↓
 Final Structured ReviewReport
 
