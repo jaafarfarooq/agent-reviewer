@@ -16,10 +16,12 @@ pub struct AgentInput {
 
 #[derive(Debug, Serialize, Deserialize, Clone)]
 pub struct AgentFinding {
-    pub category: String,      // e.g., "style", "bug", "performance"
-    pub message: String,       // Human-readable feedback
-    pub severity: u8           // 1-5 scale
+    pub category: String,
+    pub message: String,
+    pub severity: u8,
+    pub confidence: f32,   // NEW
 }
+
 
 #[derive(Debug, Serialize, Deserialize, Clone)]
 pub struct AgentResult{

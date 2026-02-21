@@ -62,3 +62,7 @@ Final Structured ReviewReport
 
 ```bash
 cargo run -- --git
+
+
+### Review a saved diff file
+cargo run -- --file diff.txt

@@ -80,14 +80,14 @@ async fn main() -> Result<(), anyhow::Error> {
     // unwrap Result with ?
     let results = orchestrator.run(input).await?;
 
-    println!("\n=== Agent Results ===");
+    println!("\n=== Raw Agent Results ===");
     for result in &results {
         println!("{:#?}", result);
     }
 
     let report = MetaReviewAgent::run(results);
 
-    println!("\n=== Final Review Report ===");
+    println!("\n=== Post-Processed Review Report ===");
     println!("{:#?}", report);
 
     Ok(())

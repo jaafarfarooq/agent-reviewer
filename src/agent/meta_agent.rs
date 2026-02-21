@@ -13,6 +13,13 @@ impl MetaReviewAgent {
 
         let highest = findings.iter().map(|f| f.severity).max().unwrap_or(0);
 
+        let avg_confidence =
+            if findings.is_empty() {
+                1.0
+            } else {
+                findings.iter().map(|f| f.confidence).sum::<f32>() / findings.len() as f32
+            };
+
         let summary = if findings.is_empty() {
             "No issues found. Code looks solid.".to_string()
         } else {
@@ -26,6 +33,7 @@ impl MetaReviewAgent {
         crate::review::ReviewReport {
             total_findings: findings.len(),
             highest_severity: highest,
+            average_confidence: avg_confidence,
             summary,
             findings,
         }

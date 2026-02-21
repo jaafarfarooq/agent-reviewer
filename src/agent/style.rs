@@ -35,8 +35,15 @@ impl ReviewAgent for StyleAgent {
 
         let parsed: serde_json::Value = serde_json::from_str(&raw)?;
 
-        let findings: Vec<AgentFinding> =
+        let mut findings: Vec<AgentFinding> =
             serde_json::from_value(parsed["findings"].clone())?;
+
+        // Initialize confidence to 1.0 if not provided by LLM
+        for finding in &mut findings {
+            if finding.confidence == 0.0 {
+                finding.confidence = 1.0;
+            }
+        }
 
         Ok(AgentResult {
             agent_name: self.name().to_string(),

@@ -21,7 +21,8 @@ The JSON must match this schema exactly:
     {{
       "category": "bug",
       "message": "string",
-      "severity": number
+      "severity": number,
+      "confidence": number
     }}
   ]
 }}
@@ -56,7 +57,8 @@ The JSON must match this schema exactly:
     {{
       "category": "style",
       "message": "string",
-      "severity": number
+      "severity": number,
+      "confidence": number
     }}
   ]
 }}
@@ -90,7 +92,8 @@ The JSON must match this schema exactly:
     {{
       "category": "performance",
       "message": "string",
-      "severity": number
+      "severity": number,
+      "confidence": number
     }}
   ]
 }}
